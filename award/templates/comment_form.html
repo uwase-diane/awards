@@ -1,0 +1,44 @@
+{% load bootstrap4 %} 
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comment</title>
+  {{form.media}}
+  {% block styles %} 
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/base.css' %}"> 
+  {% endblock %}
+</head>
+<body style="font-family: 'Playfair Display', serif; font-size:100%; background-image: url('https://res.cloudinary.com/auca/image/upload/v1610982602/background_bbwp8x.png'); background-repeat: no-repeat;background-size: cover;">
+<div class="container" style="margin-top:5%">
+  <div class="card col-md-10">
+  <form  action="{%url 'comment' proj_id%}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+  
+    {% bootstrap_form form%}
+
+    <input type="submit" class="btn btn-success btn-lg" value="Post">
+  </form>
+</div>
+<!-- <div class="container">
+  <div class="row" style="margin-top: 3%">
+      <div class="col-md-12">
+              <h2 style="margin-top: 3%; margin-bottom:3%">ALL COMMENTS</h2>
+      {% for comments in mycomments %}
+      <p>{{comments.comment}}</p>
+       <p>{{comments.user}}</p>
+      {% endfor %}
+      </div>
+  </div>  
+</div> -->
+
+   {% block scripts %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  {% bootstrap_javascript %} 
+  {% endblock %}
+</div>
+</body>
+</html>
